@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sort English Civitai prompts into clothing, scene, action, and character appearance categories.">
+  <meta name="theme-color" content="#11131a">
+  <title>Prompt Sorter — organize Civitai prompts</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2311131a'/%3E%3Cpath d='M8 9h16M8 16h11M8 23h7' stroke='%23f2c14e' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='24' cy='22' r='4' fill='%2378e0c2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Prompt Sorter — back to top" data-i18n-aria="brandAria">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>Prompt Sorter</span>
+    </a>
+    <div class="topbar-tools">
+      <div class="language-switcher" role="group" aria-label="Interface language" data-i18n-aria="languageAria">
+        <button type="button" class="language-button active" data-language="en" aria-pressed="true">EN</button>
+        <button type="button" class="language-button" data-language="es" aria-pressed="false">ES</button>
+        <button type="button" class="language-button" data-language="de" aria-pressed="false">DE</button>
+      </div>
+      <div class="mode-pill"><span aria-hidden="true"></span><b data-i18n="mode">English prompts</b></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="workspace" aria-labelledby="page-title">
+      <div class="intro-row">
+        <div>
+          <p class="eyebrow" data-i18n="eyebrow">Civitai prompt organizer</p>
+          <h1 id="page-title" data-i18n-html="heading">Sort your prompt<br>into meaningful layers.</h1>
+        </div>
+        <p class="intro-copy" data-i18n="intro">Paste an English prompt. The tool keeps the original wording and weights, then sorts each fragment by category.</p>
+      </div>
+
+      <div class="editor-shell">
+        <div class="editor-head">
+          <label for="prompt-input" data-i18n="inputLabel">Source prompt</label>
+          <div class="editor-actions">
+            <button class="text-button" id="sample-button" type="button" data-i18n="sample">Example</button>
+            <button class="text-button" id="clear-button" type="button" data-i18n="clear">Clear</button>
+          </div>
+        </div>
+        <textarea id="prompt-input" spellcheck="false" placeholder="For example: 1girl, long silver hair, green eyes, red leather jacket, standing in a rainy city street, neon lighting..." data-i18n-placeholder="placeholder"></textarea>
+        <div class="editor-foot">
+          <span id="fragment-count" data-i18n="separatorHint">Separate fragments with commas</span>
+          <button class="primary-button" id="analyze-button" type="button">
+            <span data-i18n="analyze">Analyze prompt</span>
+            <span aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="results-section" aria-labelledby="results-title">
+      <div class="results-heading">
+        <div>
+          <p class="eyebrow" data-i18n="resultEyebrow">Result</p>
+          <h2 id="results-title" data-i18n="categories">Categories</h2>
+        </div>
+        <div class="results-tools">
+          <span id="summary" data-i18n="waiting">Waiting for a prompt</span>
+          <button class="secondary-button" id="copy-all-button" type="button" disabled data-i18n="copyAll">Copy all</button>
+        </div>
+      </div>
+
+      <div class="category-grid" id="category-grid" aria-live="polite"></div>
+
+      <div class="note">
+        <span class="note-icon" aria-hidden="true">i</span>
+        <p><strong data-i18n="noteStrong">Unknown fragments are never deleted.</strong> <span data-i18n="noteText">They go to “Other”. You can change any fragment’s category manually—the original wording and weights are preserved.</span></p>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="classifier.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
