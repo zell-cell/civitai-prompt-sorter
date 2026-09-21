@@ -2,7 +2,7 @@
 
 A lightweight, privacy-friendly web tool for organizing English Civitai and Stable Diffusion prompts into meaningful categories.
 
-**Live demo:** [prompt-sorter-civitai.qlex56.chatgpt.site](https://prompt-sorter-civitai.qlex56.chatgpt.site)
+**Live demo:** [https://zell-cell.github.io/civitai-prompt-sorter/](https://zell-cell.github.io/civitai-prompt-sorter/)
 
 ## What it does
 
